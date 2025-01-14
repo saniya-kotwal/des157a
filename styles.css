@@ -1,1 +1,149 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Poppins';
+}
 
+@keyframes backgroundChange {
+	0% {
+		background: rgb(38,60,146);
+		background: linear-gradient(180deg, rgba(38,60,146,1) 0%, rgba(68,121,171,1) 35%, rgba(232,206,137,1) 75%);
+	}
+	
+	25% {
+		background: rgb(228,176,82);
+		background: linear-gradient(180deg, rgba(228,176,82,1) 0%, rgba(253,236,48,1) 35%, rgba(248,229,161,1) 75%);
+	}
+	
+	50% {
+		background: rgb(75,68,82);
+		background: linear-gradient(180deg, rgba(75,68,82,1) 0%, rgba(188,108,89,1) 35%, rgba(234,188,70,1) 75%);
+	}
+
+	75% {
+		background: rgb(228,176,82);
+		background: linear-gradient(180deg, rgba(228,176,82,1) 0%, rgba(253,236,48,1) 35%, rgba(248,229,161,1) 75%);
+	}
+
+	100% {
+		background: rgb(38,60,146);
+		background: linear-gradient(180deg, rgba(38,60,146,1) 0%, rgba(68,121,171,1) 35%, rgba(232,206,137,1) 75%);
+	}
+}
+
+@keyframes sunMove {
+	0% {
+		top: calc(0vh - 100px);
+	}
+
+	25% {
+		top: calc(50vh - 100px);
+	}
+
+	50% {
+		top: calc(100vh - 100px);
+	}
+
+	75% {
+		top: calc(50vh - 100px);
+	}
+	100% {
+		top: calc(0vh - 100px);
+	}
+}
+
+body {
+	animation: backgroundChange 15s infinite;
+}
+
+header h1 {
+	text-align: center;
+	font-family: 'Playwrite US Modern';
+	font-size: 3em;
+	margin: 3.5em 0 1.5em;
+	color: white;
+}
+
+.sun-container {
+	position: fixed;
+	left: 50%;
+	transform: translateX(-50%);
+	animation: sunMove 15s linear infinite;
+	z-index: -1;
+}
+
+.sun {
+	width: 200px;
+	height: 200px;
+	background: #F7EF96;
+	box-shadow: 0px 0px 10.4px 3px #F1EEE3;
+	border-radius: 50%;
+}
+
+.banner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+}
+
+.banner h3 {
+	margin: 0.2em;
+	font-family: 'Playwrite US Modern';
+	font-size: 1em;
+	color: black;
+	text-align: center;
+}
+
+main {
+	display: flex;
+	justify-content: center;
+	gap: 2em;
+	padding: 0 2em;
+}
+
+.section-card {
+	background: white;
+	padding: 2em;
+	border-radius: 1em;
+	min-width: 200px;
+	height: 370px;
+}
+
+.section-card h2 {
+	font-family: 'Playwrite US Modern';
+	text-align: center;
+	margin: 0;
+	margin-bottom: 1em;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+li {
+	padding-bottom: 0.8em;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+	color: #4479AB;
+}
+
+footer {
+	text-align: center;
+	margin-top: 2em;
+	padding: 2em;
+	height: 20px;
+}
+
+footer a {
+	color: black;
+}
