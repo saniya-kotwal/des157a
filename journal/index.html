@@ -5,16 +5,46 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Learning Journal</title>
 
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
-	<link href="styles.css" rel="stylesheet">
-
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Playwrite+US+Modern&family=Poppins&display=swap" rel="stylesheet">
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+	<link href="styles.css" rel="stylesheet">
 </head>
 <body>
-	<h1>Learning Journal</h1>
+	<header>
+		<div class="sun-container">
+			<div class="sun"></div>
+			<div class="banner">
+				<h3>DES 157A</h3>
+				<h3>Interactive Media II</h3>
+				<h3>Winter 2025</h3>
+			</div>
+		</div>
 
-	
+        <h1>Saniya's Learning Journal</h1>
+    </header>
+
+    <main>
+        <article class="journal-entry">
+            <h2>Learning Journal 1</h2>
+            <div class="date">January 21, 2025</div>
+            
+			<h3>Form Design Best Practices</h3>
+
+            <p>After studying form design principles, I've learned that the "less is more" approach is crucial. The article emphasizes that minimizing input fields is fundamental. It explained that every unnecessary question increases the risk of form abandonment. This was interesting to learn because I previously thought more information was always better.</p>
+            
+            <p>One design principle that surprised me was the effectiveness of single-column layouts. Multiple columns, while space-efficient, actually slow users down by interrupting their vertical scanning flow. The exception is for related short fields like city, state, and zip code, which can be grouped horizontally.</p>
+            
+            <p>The article's insights about placeholder text were particularly interesting. While I used to think placeholders were helpful, they can actually hurt usability since they disappear when users start typing. Instead, it's better to use clear labels above fields and provide any extra instructions in permanent supporting text.</p>
+            
+            <p>I evaluated Google's sign-in form using these principles. They do very well at minimalism, requiring only email/phone and password fields. The form follows the recommended single-column layout and uses clear, persistent labels above each field. I particularly appreciate their "show password" option and how they provide helpful error messages inline.</p>
+
+			<p>Overall, this research has changed how I'll approach form design in my future projects, focusing on reducing cognitive load and increasing accessibility rather than just collecting data.</p>
+            
+        </article>
+    </main>
+
 </body>
 </html>
