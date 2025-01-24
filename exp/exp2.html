@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JS Experiment 2</title>
+</head>
+<body>
+	<h1>JS Experiment 2</h1>
+
+	<h2>Mood Color Generator!</h2>
+	<div id="result">
+		<p>Answer questions to create a custom color for your mood!</p>
+	</div>
+
+	<script>
+
+		// program prompts user with questions about their mood and creates a custom color accordingly 
+		
+		var name = prompt("Enter your name:");
+		var moods = ['happy', 'grumpy', 'calm'];
+
+		function moodRating(moodType) {
+
+			var rating = prompt(`On a scale of 1-10, how ${moodType} are you`);
+
+			if (rating < 1 || rating > 10 || rating === null) {
+				alert('Enter a valid number btween 1 and 10:')
+				return moodRating(moodType);
+			}
+			else {
+				return rating;
+			}
+		}
+
+		function calculate(happy, grumpy, calm) {
+			var red = Math.floor(happy * 25);
+			var green = Math.floor(grumpy * 25);
+			var blue = Math.floor(calm * 25);
+			return `rgb(${red}, ${green}, ${blue})`;
+		}
+
+		var happyRating = moodRating(moods[0]);
+		var grumpyRating = moodRating(moods[1]);
+		var calmRating = moodRating(moods[2]);
+
+		var mood = calculate(happyRating, grumpyRating, calmRating);
+		document.body.style.backgroundColor = mood;
+		document.querySelector('#result p').innerHTML = `${name}, your mood color is ${mood}!`;
+
+	</script>
+
+</body>
+</html>
