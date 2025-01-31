@@ -1,0 +1,19 @@
+h1 {
+	background: var(--gradient, linear-gradient(90deg, #9333EA 0%, #6366F1 100%));
+	text-align: center;
+	font-family: Carlito;
+	font-size: 72px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+}
+
+h2 {
+	color: #E1E1E6;
+	text-align: center;
+	font-family: Carlito;
+	font-size: 40px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}

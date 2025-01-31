@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MadLibs | Saniya Kotwal</title>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+	<link href="styles.css" rel="stylesheet">
+
+</head>
+<body>
+	<!-- Form Screen -->
+    <div class="container" id="formScreen">
+        <div class="header">
+            <h1>LinkedIn Recruiter Message</h1>
+            <h2>Create the perfect message here!</h2>
+        </div>
+        
+        <div class="form-container">
+            <form id="messageForm">
+                <div class="form-group">
+                    <label for="recruiter-name">Recruiter's name:</label>
+                    <input type="text" id="recruiter-name" name="recruiter-name">
+                </div>
+
+                <div class="form-group">
+                    <label for="adjective">Adjective:</label>
+                    <input type="text" id="adjective" name="adjective">
+                </div>
+
+                <div class="form-group">
+                    <label for="your-name">Your name:</label>
+                    <input type="text" id="your-name" name="your-name">
+                </div>
+
+                <div class="form-group">
+                    <label for="year">Year in school:</label>
+                    <input type="text" id="year" name="year">
+                </div>
+
+                <div class="form-group">
+                    <label for="university">University name:</label>
+                    <input type="text" id="university" name="university">
+                </div>
+
+                <div class="form-group">
+                    <label for="major">Major:</label>
+                    <input type="text" id="major" name="major">
+                </div>
+
+                <div class="form-group">
+                    <label for="industry">Industry or field of interest:</label>
+                    <input type="text" id="industry" name="industry">
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company name:</label>
+                    <input type="text" id="company" name="company">
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Type of work or role:</label>
+                    <input type="text" id="role" name="role">
+                </div>
+
+                <div class="form-group">
+                    <label for="focus">Company's focus:</label>
+                    <input type="text" id="focus" name="focus">
+                </div>
+
+                <div class="form-group">
+                    <label for="topic">Specific topic:</label>
+                    <input type="text" id="topic" name="topic">
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Message Screen -->
+    <div class="container hidden" id="messageScreen">
+        <div class="header">
+            <h1>Message Generated!</h1>
+        </div>
+        
+        <div class="message-container">
+            <div class="message-content" id="generatedMessage">
+                <p>Hi [Recruiter's Name],</p>
+                
+                <p>I hope you're doing [Adjective]! My name is [Your Name], and I'm a [Year] at [University] majoring in [Major]. I came across your profile while exploring opportunities in [Industry] and was impressed by your work with [Company].</p>
+                
+                <p>I'm particularly interested in [Role], and I'd love to learn more about [Company]'s approach to [Focus].</p>
+                
+                <p>If you're available, I'd appreciate the chance to connect and perhaps chat briefly about [Topic] or any advice you might have for someone looking to enter [Industry].</p>
+                
+                <p>Looking forward to connecting!</p>
+                
+                <p>Best regards,<br>[Your Name]</p>
+            </div>
+            
+            <button class="copy-button" onclick="copyMessage()">Copy message</button>
+        </div>
+    </div>
+
+</body>
+</html>
