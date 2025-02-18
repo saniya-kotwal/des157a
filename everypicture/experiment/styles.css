@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+	padding: 0;
+    background: #f5f1e9;
+}
+
+.container {
+    position: relative;
+    height: 100vh;
+}
+
+#collageView, #recipeView {
+    position: absolute;
+    inset: 0;
+    transition: opacity 1.5s;
+}
+
+.showing { opacity: 1; }
+.hidden { 
+    opacity: 0; 
+    pointer-events: none; 
+}
+
+#grandma {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 325px;
+    height: 325px;
+    border-radius: 50%;
+    z-index: 1;
+    object-fit: cover;
+    transition: transform 0.2s ease-out;
+}
+
+.surrounding-images img {
+    position: absolute;
+    max-width: 300px;
+    max-height: 300px;
+    object-fit: cover;
+    z-index: 0;
+    transition: transform 0.2s ease-out;
+}
+
+#table {
+    top: calc(47% - 300px);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#mombday {
+    top: 50%;
+    left: calc(40% - 300px);
+    transform: translateY(-50%);
+}
+
+#panipuri {
+    top: 50%;
+    right: calc(45% - 300px);
+    transform: translateY(-50%);
+}
+
+.hotspot {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    background: rgba(255,255,255,0.5);
+    transition: 0.3s;
+}
+
+.recipe-marathi { 
+    top: calc(43% - 200px); 
+    left: calc(46% - 50px);
+}
+.recipe-english { 
+    top: calc(40% - 150px);
+    left: calc(48% + 50px);
+}
+
+#recipeView {
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#recipeImage {
+    max-width: 90%;
+    max-height: 90%;
+}
