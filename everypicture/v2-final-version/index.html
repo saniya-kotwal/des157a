@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grandma's Recipes</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ms+Madi&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="container">
+        <section id="collage-view" class="showing">
+            <h1>Grandma's Recipes</h1>
+            <h2>← Click on the dishes to see the recipes and the stories behind them</h2>
+            <img id="grandma" src="images/grandma-kanavle.jpg" alt="grandma with kanavle">
+            <div class="hotspot kanavle"></div>
+            <div class="surrounding-images">
+                <div id="table">
+                    <img src="images/india-table.jpg" alt="table of indian dishes">
+                    <div class="hotspot recipe-english"></div>
+                </div>
+                <div id="mombday">
+                    <img src="images/mombday.jpg" alt="mom's birthday spread">
+                    <div class="hotspot lonsa"></div>
+                </div>
+                <div id="panipuri">
+                    <img src="images/panipuri.jpg" alt="pani puri">
+                    <div class="hotspot recipe-marathi"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <section id="recipe-view" class="hidden">
+        <h2 class="recipe-title"></h2>
+        <p class="recipe-description"></p>
+        <img id="recipe-image" src="" alt="">
+        <p class="back-instruction">Click anywhere to go back</p>
+    </section>
+</body>
+</html>
