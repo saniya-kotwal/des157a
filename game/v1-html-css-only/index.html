@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pig Royale</title>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+	<link href="styles.css" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <div class="gameBoard">
+		<h1>Pig Royale</h1>
+    	<h2>A casino-style Game of Pig</h2> 
+		<div class="playersDecks">
+			<div id="player1" data-player="0">
+				<h3>Small Blind</h3>
+				<div class="cards">
+					<img src="images/cards.png" alt="cards">
+				</div>
+				<div class="score">
+					<div class="chip">
+						<img src="images/chip.png" alt="chip">
+					</div>
+					<div class="points">0</div>
+				</div>
+			</div>
+			<div id="turn"></div>
+			<div id="player2" data-player="1">
+				<h3>Big Blind</h3>
+				<div class="cards">
+					<img src="images/cards.png" alt="cards">
+				</div>
+				<div class="score">
+					<div class="chip">
+						<img src="images/chip.png" alt="chip">
+					</div>
+					<div class="points">0</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="message"></div>
+		<div id="buttons">
+			<button id="stand">Stand</button>
+			<button id="hit">Hit</button>
+		</div>
+		
+	</div>
+    
+</body>
+</html>
