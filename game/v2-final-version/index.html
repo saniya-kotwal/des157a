@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pig Royale</title>
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Rye&display=swap" rel="stylesheet">
+
+	<link href="styles.css" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <div class="gameBoard">
+
+		<h1>Pig Royale</h1>
+    	<h2>A Casino-Style Game of Pig</h2> 
+		<div class="playersDecks">
+			<div id="player1" data-player="0">
+				<h3>Small Blind</h3>
+				<div class="cards">
+					<div class="card1">
+						<img src="images/back.png" alt="back of card">
+					</div>
+					<div class="card2">
+						<img src="images/back.png" alt="back of card">
+					</div>
+				</div>
+				<div class="score">
+					<div class="chip">
+						<img src="images/chip.png" alt="chip">
+					</div>
+					<div class="points">0</div>
+				</div>
+			</div>
+			<div id="turn"></div>
+			<div id="player2" data-player="1">
+				<h3>Big Blind</h3>
+				<div class="cards">
+					<div class="card1">
+						<img src="images/back.png" alt="back of card">
+					</div>
+					<div class="card2">
+						<img src="images/back.png" alt="back of card">
+					</div>
+				</div>
+				<div class="score">
+					<div class="chip">
+						<img src="images/chip.png" alt="chip">
+					</div>
+					<div class="points">0</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="message"></div>
+		<div id="buttons">
+			<button id="stand">Stand</button>
+			<button id="hit">Hit</button>
+		</div>
+
+	</div>
+
+	<div id="overlay">
+		<div id="instructions">
+			<h2>How to Play Pig Royale</h2>
+			<ul>
+				<li>Click "Hit" to draw two cards</li>
+				<li>Card values are added to your score</li>
+				<li>If you draw an Ace, your turn ends</li>
+				<li>If you draw two Aces, your score resets to 0</li>
+				<li>Click "Stand" to end your turn</li>
+				<li>First player to reach 100 points wins!</li>
+			</ul>
+			<button id="startGame">Start Game</button>
+		</div>
+	</div>
+
+	<div id="winnerOverlay" style="display: none;">
+		<div id="winnerMessage">
+			<h2>Game Over!</h2>
+			<p id="winnerText"></p>
+			<button id="newGame">Play Again</button>
+		</div>
+	</div>
+    
+</body>
+</html>
