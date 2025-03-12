@@ -31,6 +31,11 @@
 	const winnerText = document.querySelector('#winnerText');
 	const newGameButton = document.querySelector('#newGame');
 
+	// Audio elements
+	const simpleOink = document.querySelector('#simple-oink');
+	const mediumOink = document.querySelector('#medium-oink');
+	const badOink = document.querySelector('#bad-oink');
+
 	// Initialize game
 	function initGame() {
 		// Set initial scores
@@ -47,14 +52,23 @@
 		// Update turn indicator
 		updateTurnIndicator();
 
-		// Buttons
+		// Add initial event listeners for new game
+		newGameButton.addEventListener('click', resetGame);
+		
+		// Make buttons inactive
+		removeGameButtonListeners();
+	}
+
+	// Add game button event listeners
+	function addGameButtonListeners() {
 		standButton.addEventListener('click', standAction);
 		hitButton.addEventListener('click', hitAction);
-		newGameButton.addEventListener('click', resetGame);
+	}
 
-		// Initially disable game buttons until start
-		hitButton.disabled = true;
-		standButton.disabled = true;
+	// Remove game button event listeners
+	function removeGameButtonListeners() {
+		standButton.removeEventListener('click', standAction);
+		hitButton.removeEventListener('click', hitAction);
 	}
 
 	// Update turn  
@@ -70,7 +84,7 @@
 
 	// Stand button 
 	function standAction() {
-		// Reset current player's cards to back
+		mediumOink.play();
 		resetPlayerCards(gameData.currentPlayer);
 
 		// Switch to other player
@@ -80,13 +94,9 @@
 
 	// Hit button
 	function hitAction() {
-		// Draw cards and determine outcome
+		removeGameButtonListeners();
 		drawCards();
-
-		// Update display with new score
 		updateScoreDisplay();
-
-		// Check for winning condition
 		checkWinningCondition();
 	}
 
@@ -106,11 +116,18 @@
 		};
 	}
 
-	// Reset cards to back for a specific player
+	// Reset cards to back
 	function resetPlayerCards(playerIndex) {
 		const playerElement = document.querySelector(`#player${playerIndex + 1}`);
-		const cards = playerElement.querySelectorAll('.cards img');
-		cards.forEach(card => {
+		const cardContainers = playerElement.querySelectorAll('.card-container');
+		const frontCards = playerElement.querySelectorAll('.card-front');
+		
+		// Remove flip 
+		cardContainers.forEach(container => {
+			container.classList.remove('flip');
+		});
+		
+		frontCards.forEach(card => {
 			card.src = 'images/back.png';
 		});
 	}
@@ -123,8 +140,10 @@
 
 		// Get player's card elements
 		const playerElement = document.querySelector(`#player${gameData.currentPlayer + 1}`);
-		const card1 = playerElement.querySelector('.card1 img');
-		const card2 = playerElement.querySelector('.card2 img');
+		const card1Container = playerElement.querySelector('.card1 .card-container');
+		const card2Container = playerElement.querySelector('.card2 .card-container');
+		const card1Front = playerElement.querySelector('.card1 .card-front');
+		const card2Front = playerElement.querySelector('.card2 .card-front');
 
 		// Draw two different cards
 		const newCard1 = getRandomCard();
@@ -134,8 +153,25 @@
 		} while (newCard2.image === newCard1.image);
 
 		// Update card images
-		card1.src = `images/${newCard1.image}`;
-		card2.src = `images/${newCard2.image}`;
+		card1Front.src = `images/${newCard1.image}`;
+		card2Front.src = `images/${newCard2.image}`;
+
+		// Reset and trigger flip animation
+		card1Container.style.transition = 'none';
+		card2Container.style.transition = 'none';
+		card1Container.style.transform = 'rotateY(0deg)';
+		card2Container.style.transform = 'rotateY(0deg)';
+		card1Container.classList.remove('flip');
+		card2Container.classList.remove('flip');
+		
+		setTimeout(() => {
+			card1Container.style.transition = 'transform 0.6s';
+			card2Container.style.transition = 'transform 0.6s';
+			card1Container.style.transform = '';
+			card2Container.style.transform = '';
+			card1Container.classList.add('flip');
+			card2Container.classList.add('flip');
+		}, 50);
 
 		// Store values and calculate sum
 		gameData.card1Value = newCard1.value;
@@ -146,12 +182,16 @@
 
 		// Handle two Aces (like snake eyes)
 		if (gameData.card1Value === 1 && gameData.card2Value === 1) {
-			console.log('Drew two Aces! Score reset to 0');
+			console.log('You drew two Aces. Score resets to 0. Next player\'s turn.');
+			badOink.play();
+			turnIndicator.textContent = `${gameData.players[gameData.currentPlayer]} drew two Aces! SCORE RESET! TURN OVER!`;
 			gameData.score[gameData.currentPlayer] = 0;
+			
 			setTimeout(() => {
 				resetPlayerCards(gameData.currentPlayer);
 				gameData.currentPlayer = gameData.currentPlayer === 0 ? 1 : 0;
 				updateTurnIndicator();
+				addGameButtonListeners();
 			}, 1500);
 			return;
 		}
@@ -161,58 +201,53 @@
 
 		// Handle single Ace (like rolling a 1)
 		if (gameData.card1Value === 1 || gameData.card2Value === 1) {
-			console.log('Drew an Ace! Turn switches to other player');
+			console.log('You drew an Ace. Next player\'s turn.');
+			mediumOink.play();
+			turnIndicator.textContent = `${gameData.players[gameData.currentPlayer]} drew an Ace! TURN OVER!`;
+			
 			setTimeout(() => {
 				resetPlayerCards(gameData.currentPlayer);
 				gameData.currentPlayer = gameData.currentPlayer === 0 ? 1 : 0;
 				updateTurnIndicator();
+				addGameButtonListeners();
 			}, 1500);
 			return;
 		}
+
+		simpleOink.play();
+		addGameButtonListeners();
 	}
 
 	// Check if player has won
 	function checkWinningCondition() {
 		if (gameData.score[gameData.currentPlayer] >= gameData.gameEnd) {
+			badOink.play();
+			removeGameButtonListeners();
+			
 			// Display winner overlay
 			winnerText.textContent = `${gameData.players[gameData.currentPlayer]} wins with ${gameData.score[gameData.currentPlayer]} points!`;
-			winnerOverlay.style.display = 'flex';
-
-			// Disable buttons
-			hitButton.disabled = true;
-			standButton.disabled = true;
+			winnerOverlay.classList.remove('hidden');
 		}
 	}
 
 	// Reset game
 	function resetGame() {
-		// Reset scores
+		mediumOink.play();
 		gameData.score = [0, 0];
-
-		// Reset all cards to back
 		resetPlayerCards(0);
 		resetPlayerCards(1);
-
-		// Enable buttons
-		hitButton.disabled = false;
-		standButton.disabled = false;
-
-		// Hide winner overlay
-		winnerOverlay.style.display = 'none';
-
-		// Reset display
+		addGameButtonListeners();
+		winnerOverlay.classList.add('hidden');
 		updateScoreDisplay();
-
-		// Randomly decide who goes first
 		gameData.currentPlayer = Math.round(Math.random());
 		updateTurnIndicator();
 	}
 
 	// Start button 
 	function startAction() {
-		overlay.style.display = 'none';
-		hitButton.disabled = false;
-		standButton.disabled = false;
+		mediumOink.play();
+		overlay.classList.add('hidden');
+		addGameButtonListeners();
 	}
 
 	// Start the game when page loads

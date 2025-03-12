@@ -13,11 +13,10 @@ body {
 
 /* Game board */
 .gameBoard {
-    width: calc(100% - 40px);
-    height: calc(100vh - 40px);
+    width: calc(100% - 80px);
+    height: calc(100vh - 80px);
     background-color: #285548;
-	border: solid 10px;
-	border-color: #2E403B;
+	border: solid 10px #2E403B;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
@@ -25,6 +24,7 @@ body {
     box-sizing: border-box;
     position: relative;
     min-height: 600px;
+	overflow: hidden;
 }
 
 /* Text styles */
@@ -33,7 +33,7 @@ h1 {
 	font-family: 'Rye', serif;
     font-size: 64px;
     text-align: center;
-    margin-bottom: 5px;
+    margin-bottom: 0;
     text-transform: uppercase;
 }
 
@@ -42,7 +42,7 @@ h2 {
     font-size: 24px;
 	font-weight: 600;
     text-align: center;
-    margin-top: 0;
+    margin: 0;
 }
 
 h3 {
@@ -59,7 +59,9 @@ h3 {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    flex-grow: 1;
+    flex: 1;
+	padding: 0 20px;
+	box-sizing: border-box;
 }
 
 #player1, #player2, #turn {
@@ -72,28 +74,26 @@ h3 {
 /* Cards */
 .cards {
     position: relative;
-	margin-top: 16px;
-    margin-bottom: 52px;
-    width: 210px;
-    height: 280px;
+	margin: 16px auto 50px;
+	width: 270px;
+    height: 190px;
+	display: flex;
 }
 
 .card1, .card2 {
     position: absolute;
-	margin: auto;
-    width: 210px;
+    width: 190px;
+	perspective: 1000px; 
 }
 
 .card1 {
-    transform: rotate(-20deg);
+    transform: translateX(-70px) rotate(-20deg);
     z-index: 2;
-    left: -60px;
 }
 
 .card2 {
-    transform: rotate(20deg);
+    transform: translateX(150px) rotate(20deg);
     z-index: 1;
-    left: 60px;
 }
 
 .card1 img, .card2 img {
@@ -101,6 +101,37 @@ h3 {
     height: auto;
     border-radius: 30px;
     box-shadow: 8px 8px 6px 0px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease;
+}
+
+.card-container {
+    position: relative;
+	width: 100%;
+	height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+}
+
+.card-container.flip {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 30px;
+    box-shadow: 8px 8px 6px 0px rgba(0, 0, 0, 0.25);
+}
+
+.card-front {
+    transform: rotateY(180deg);
+}
+
+.card-back {
+    transform: rotateY(0deg);
 }
 
 /* Score display */
@@ -109,33 +140,39 @@ h3 {
     align-items: center;
     justify-content: center;
 	font-weight: 600;
+	margin-top: 40px;
 }
 
-.chip {
+.chip img {
     display: flex;
     justify-content: center;
     align-items: center;
+	height: 80px;
 }
 
 .points {
     color: white;
     font-size: 32px;
     margin-left: 10px;
+    transition: all 0.5s ease;
 }
 
 /* Turn indicator */
 #turn {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: rgba(0, 0, 0, 0.30);
     color: white;
-	margin-top: 200px;
-    padding: 15px 40px;
-	height: 40px;
-	width: 320px;
-    border-radius: 40px;
+    margin-top: 200px;
+    padding: 24px 40px;
+    width: 320px;
+    height: 40px;
+    border-radius: 50px;
     font-size: 24px;
+    text-align: center;
+    line-height: 1.4;
+    animation: pulse 2s infinite ease-in-out;
 }
 
 /* Buttons */
@@ -193,21 +230,32 @@ button:hover {
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    animation: fadeIn 0.5s ease-in;
 }
 
 #instructions {
     background-color: #285548;
-    padding: 40px;
+	padding: 0 40px 40px 40px;
+	padding-top: 0;
     border-radius: 20px;
     border: solid 5px #2E403B;
     max-width: 600px;
     text-align: center;
 }
 
+#instructions h3 {
+    color: white;
+    font-family: 'Cardo', serif;
+	font-size: 24px;
+    margin-bottom: 10px;
+}
+
 #instructions h2 {
     color: #FBBF24;
-    font-family: 'Rye', serif;
-    margin-bottom: 30px;
+	font-family: 'Rye', serif;
+    font-size: 32px;
+    margin-bottom: 20px;
+	text-transform: uppercase;
 }
 
 #instructions ul {
@@ -217,12 +265,17 @@ button:hover {
     margin-bottom: 30px;
 }
 
+#instructions ul li {
+    padding-left: 10px;
+}
+
 #startGame {
+	width: 200px;
+    padding: 20px 40px;
+    border-radius: 50px;
     background-color: #018534;
     color: white;
-    padding: 15px 40px;
     border: none;
-    border-radius: 50px;
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
@@ -246,6 +299,7 @@ button:hover {
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    animation: fadeIn 0.5s ease-in;
 }
 
 #winnerMessage {
@@ -260,7 +314,9 @@ button:hover {
 #winnerMessage h2 {
     color: #FBBF24;
     font-family: 'Rye', serif;
+	font-size: 32px;
     margin-bottom: 30px;
+	text-transform: uppercase;
 }
 
 #winnerMessage p {
@@ -270,9 +326,109 @@ button:hover {
 }
 
 #newGame {
+    width: 200px;
+    padding: 20px 40px;
+    border-radius: 50px;
     background-color: #018534;
+    color: white;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
 }
 
 #newGame:hover {
     background-color: #1fa050;
+}
+
+/* Footer */
+
+footer {
+    color: black;
+    text-align: right;
+    padding: 10px;
+	padding-right: 80px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+footer a {
+    color: black;
+	font-family: 'Cardo', serif;
+    font-style: italic;
+}
+
+footer a:hover {
+    color: #FBBF24;
+    text-decoration: underline;
+}
+
+/* Sources Page Styling */
+
+.sources {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 60px;
+    background-color: #285548;
+    border: solid 10px #2E403B;
+    border-radius: 30px;
+    color: white;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.sources h1 {
+    font-family: 'Rye', serif;
+    color: #FBBF24;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.sources ul {
+    padding: 0;
+    font-family: 'Cardo', serif;
+    font-size: 22px;
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.sources li {
+    margin-bottom: 30px;
+    padding-left: 40px;
+    position: relative;
+    left: 4px;
+    color: #FBBF24;
+    font-size: 18px;
+}
+
+.sources a {
+    color: white;
+    font-style: italic;
+    padding-bottom: 2px;
+}
+
+.sources a:hover {
+    color: #FBBF24;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
 }

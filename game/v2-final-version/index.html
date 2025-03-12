@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pig Royale</title>
+    <link rel="icon" href="images/chip.png" type="image/png">
 
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
 
@@ -16,19 +17,27 @@
 </head>
 <body>
 
-    <div class="gameBoard">
-
-		<h1>Pig Royale</h1>
-    	<h2>A Casino-Style Game of Pig</h2> 
+    <main class="gameBoard">
+		<header>
+			<h1>Pig Royale</h1>
+    		<h2>A Casino-Style Game of Pig</h2> 
+		</header>
 		<div class="playersDecks">
-			<div id="player1" data-player="0">
+			<article id="player1" data-player="0">
 				<h3>Small Blind</h3>
 				<div class="cards">
 					<div class="card1">
-						<img src="images/back.png" alt="back of card">
+						<div class="card-container">
+							<img class="card-back" src="images/back.png" alt="card back">
+							<img class="card-front" src="images/back.png" alt="card back"> 
+						</div>
 					</div>
+					
 					<div class="card2">
-						<img src="images/back.png" alt="back of card">
+						<div class="card-container">
+							<img class="card-back" src="images/back.png" alt="card back">
+							<img class="card-front" src="images/back.png" alt="card back">
+						</div>
 					</div>
 				</div>
 				<div class="score">
@@ -37,16 +46,23 @@
 					</div>
 					<div class="points">0</div>
 				</div>
-			</div>
+			</article>
 			<div id="turn"></div>
-			<div id="player2" data-player="1">
+			<article id="player2" data-player="1">
 				<h3>Big Blind</h3>
 				<div class="cards">
 					<div class="card1">
-						<img src="images/back.png" alt="back of card">
+						<div class="card-container">
+							<img class="card-back" src="images/back.png" alt="card back">
+							<img class="card-front" src="images/back.png" alt="card back"> 
+						</div>
 					</div>
+					
 					<div class="card2">
-						<img src="images/back.png" alt="back of card">
+						<div class="card-container">
+							<img class="card-back" src="images/back.png" alt="card back">
+							<img class="card-front" src="images/back.png" alt="card back"> 
+						</div>
 					</div>
 				</div>
 				<div class="score">
@@ -55,39 +71,49 @@
 					</div>
 					<div class="points">0</div>
 				</div>
-			</div>
+			</article>
 		</div>
 
 		<div id="message"></div>
 		<div id="buttons">
 			<button id="stand">Stand</button>
 			<button id="hit">Hit</button>
+			<audio id="simple-oink" src="audio/pig-simple-oink.mp3"></audio>
+			<audio id="medium-oink" src="audio/pig-medium-oink.mp3"></audio>
+			<audio id="bad-oink" src="audio/pig-bad-oink.mp3"></audio>
 		</div>
 
-	</div>
+	</main>
 
 	<div id="overlay">
-		<div id="instructions">
-			<h2>How to Play Pig Royale</h2>
+		<article id="instructions">
+			<h3>How to Play:</h3>
+			<h2>Pig Royale</h2>
 			<ul>
+				<li>Decide which player is Small Blind and Big Blind</li>
+				<li>A random player will go first</li>
 				<li>Click "Hit" to draw two cards</li>
 				<li>Card values are added to your score</li>
 				<li>If you draw an Ace, your turn ends</li>
 				<li>If you draw two Aces, your score resets to 0</li>
 				<li>Click "Stand" to end your turn</li>
-				<li>First player to reach 100 points wins!</li>
+				<li>First player to reach 30 points wins!</li>
 			</ul>
 			<button id="startGame">Start Game</button>
-		</div>
+		</article>
 	</div>
 
-	<div id="winnerOverlay" style="display: none;">
-		<div id="winnerMessage">
+	<div id="winnerOverlay" class="hidden">
+		<article id="winnerMessage">
 			<h2>Game Over!</h2>
 			<p id="winnerText"></p>
 			<button id="newGame">Play Again</button>
-		</div>
+		</article>
 	</div>
+
+	<footer>
+		<a href="sources.html">Sources</a>
+	</footer>
     
 </body>
 </html>
